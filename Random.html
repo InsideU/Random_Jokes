@@ -1,0 +1,34 @@
+
+<html>
+	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+		<script>
+			$(function(){
+			$("#generator").click(function(){
+				$.ajax({
+						url: "http://api.icndb.com/jokes/"+ parseInt($("#value").val())%603
+				}).done(function(q){
+				if (q['type'] == 'success' )
+					$("#quote").html(q['value']['joke'])
+				else
+					$("#quote").html("Some error occurred. Please try again.")
+				});
+			});
+			});
+		</script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container">
+			<div class="jumbotron">
+		<button class='btn btn-primary' id='generator'>Hit Me!</button>
+		<input type='text' id='value' placeholder="Enter joke id here"/>
+		<div id='quote'>Press the button.</div>
+	</div>
+</div>
+	</body>
+</html>
